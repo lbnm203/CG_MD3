@@ -1,10 +1,8 @@
 CREATE DATABASE IF NOT EXISTS student_management;
-DROP DATABASE IF EXISTS student_management;
 
 USE student_management;
 
-
-CREATE TABLE student (
+CREATE TABLE students (
 	student_id INT,
     student_name VARCHAR(200),
     age INT,
@@ -12,13 +10,13 @@ CREATE TABLE student (
     PRIMARY KEY (student_id)
 );
 
-CREATE TABLE class (
+CREATE TABLE classes (
 	class_id INT,
     class_name VARCHAR(200),
     PRIMARY KEY (class_id)
 );
 
-CREATE TABLE teacher (
+CREATE TABLE teachers (
 	teacher_id INT,
     teacher_name VARCHAR(200),
     age INT,

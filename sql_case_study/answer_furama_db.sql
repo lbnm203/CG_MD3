@@ -26,12 +26,31 @@ join loai_khach_hang lkh on kh.id_loai_khach_hang = lkh.id_loai_khach_hang
 left join hop_dongs hd on kh.id_khach_hang = hd.id_khach_hang
 where ten_loai_khach_hang like "%Diamond%"
 group by kh.id_khach_hang, kh.ten_khach_hang
-order by SoLanDat asc
+order by SoLanDat asc;
 
 
 -- 5.	Hiển thị IDKhachHang, HoTen, TenLoaiKhach, IDHopDong, TenDichVu, NgayLamHopDong, NgayKetThuc, TongTien 
 -- (Với TongTien được tính theo công thức như sau: ChiPhiThue + SoLuong*Gia, với SoLuong và Giá là từ bảng DichVuDiKem) 
 -- cho tất cả các Khách hàng đã từng đặt phỏng. (Những Khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra).
+select * from khach_hangs;
+select * from hop_dongs;
+select * from dich_vus;
+select * from dich_vu_di_kem;
+
+select kh.id_khach_hang, kh.ten_khach_hang, lkh.ten_loai_khach_hang, hd.id_hop_dong, 
+		dv.ten_dich_vu, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc_hop_dong, 
+        (ifnull(dv.chi_phi_thue, 0) + sum(ifnull(hdct.so_luong * dvdk.gia_dich_vu, 0))) as TongTien
+
+from khach_hangs kh
+join loai_khach_hang lkh on kh.id_loai_khach_hang = lkh.id_loai_khach_hang
+left join hop_dongs hd on kh.id_khach_hang = hd.id_khach_hang
+left join hop_dong_chi_tiet hdct on hd.id_hop_dong = hdct.id_hop_dong
+left join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem = dvdk.id_dich_vu_di_kem
+left join dich_vus dv on hd.id_dich_vu = dv.id_dich_vu
+
+group by kh.id_khach_hang, kh.ten_khach_hang, lkh.ten_loai_khach_hang, hd.id_hop_dong, 
+		dv.ten_dich_vu, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc_hop_dong
+
 
 -- 6.	Hiển thị IDDichVu, TenDichVu, DienTich, ChiPhiThue, TenLoaiDichVu của tất cả các loại Dịch vụ chưa từng
 --  được Khách hàng thực hiện đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).

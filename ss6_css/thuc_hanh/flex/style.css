@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+#header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    margin: 10px
+}
+
+#header h1 {
+    margin: 20px;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 15px;
+}
+
+
+#menu{
+    width: 25%;
+}
+
+
+#menu li{
+    background-color: #33b5e5;
+    color: #fff;
+    padding: 10px;
+    margin: 5px;
+}
+
+#menu li a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#content {
+    width: 50%;
+}
+
+#content h1 {
+    padding: 20px 0;
+}
+
+#sidebar {
+    width: 25%;
+    background-color: #33b5e5;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+#sidebar h2{
+    padding: 20px;
+}
+
+#footer{
+    background-color: #1e799a;
+    color: #fff;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+}
+#footer p{
+    font-size: 12px;
+}
+
+/* Responsive Design - Tự động xuống hàng khi thu nhỏ trang */
+@media screen and (max-width: 768px) {
+    #container {
+        flex-direction: column;
+    }
+    
+    #menu, #content, #sidebar {
+        width: 100%;
+    }
+}

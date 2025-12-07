@@ -102,8 +102,7 @@ join hop_dongs hd on hd.id_khach_hang = kh.id_khach_hang
 join hop_dong_chi_tiet hdct on hdct.id_hop_dong = hd.id_hop_dong
 join dich_vu_di_kem dvdk on dvdk.id_dich_vu_di_kem = hdct.id_dich_vu_di_kem
 where lkh.ten_loai_khach_hang = "%Diamond%"
-and (kh.dia_chi like "%Vinh%")
-or (kh.dia_chi like "%Quang Ngai%");
+and (kh.dia_chi like "%Vinh%" or kh.dia_chi like "%Quang Ngai%");
 
 
 
@@ -117,6 +116,22 @@ or (kh.dia_chi like "%Quang Ngai%");
 
 -- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. Thông tin hiển thị
 -- bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
+
+SELECT hd.id_hop_dong, ldv.ten_loai_dich_vu, dvdk.ten_dich_vu_di_kem, count(hdct.id_dich_vu_di_kem) AS SoLanSuDung
+from hop_dong_chi_tiet hdct
+join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem = dvdk.id_dich_vu_di_kem
+join hop_dongs hd on hdct.id_hop_dong = hd.id_hop_dong
+join dich_vus dv on hd.id_dich_vu = dv.id_dich_vu
+join loai_dich_vu ldv on dv.id_loai_dich_vu = ldv.id_loai_dich_vu
+where dvdk.id_dich_vu_di_kem in (
+	select id_dich_vu_di_kem
+    from hop_dong_chi_tiet
+    group by id_dich_vu_di_kem
+    having count(id_dich_vu_di_kem) = 1
+)
+group by hd.id_hop_dong, ldv.ten_loai_dich_vu, dvdk.ten_dich_vu_di_kem
+order by hd.id_hop_dong;
+
 
 -- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi mới 
 -- chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.

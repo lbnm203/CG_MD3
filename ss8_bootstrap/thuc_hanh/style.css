@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-group {
+    padding-left: 15px;
+}
+
+.checkbox {
+    padding-left: 15px;
+}
+
+.btn-secondary {
+    margin: 15px;
+}
+
+hr {
+    padding: 15px;
+}

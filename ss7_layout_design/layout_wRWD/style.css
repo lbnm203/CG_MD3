@@ -69,12 +69,11 @@ header .login{
 .container{
     display: flex;
     flex-direction: row;
-    gap: 10px;
     flex: 1;
 }
 
 .container #left-bar{
-    width: 20%;
+    flex: 1;
     background-color: #f0f0f0;
     text-align: center;
     padding: 10px;
@@ -84,14 +83,16 @@ header .login{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 10px;
 }
 
 .container #content{
-    width: 60%;
+    flex: 3;
+    padding: 20px;
 }
 
 .container #right-bar{
-    width: 20%;
+    flex: 1;
     background-color: #f0f0f0;
     text-align: center;
     padding: 10px;
@@ -116,3 +117,15 @@ footer{
     padding: 20px;
 }
 
+@media (max-width: 768px) {
+    .container{
+        flex-direction: column;
+    }
+
+
+    .container #left-bar, .container #right-bar, .container #content{
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+}

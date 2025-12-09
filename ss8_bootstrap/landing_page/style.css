@@ -1,0 +1,18 @@
+
+/* .navbar-brand img {
+    width: 108px;
+    height: auto;
+} */
+
+.c-show-pipe::before {
+    content: "";
+    border-left: 2px solid #000;
+}
+
+@media (max-width: 991px) {
+    .c-show-pipe {
+        display: none;
+    }
+
+    
+}

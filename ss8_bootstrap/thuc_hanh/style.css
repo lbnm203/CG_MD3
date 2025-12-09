@@ -6,20 +6,40 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.form-group {
-    padding-left: 15px;
+.container {
+    width: 400px;
+    max-width: 90%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 30px;
 }
 
-.checkbox {
-    padding-left: 15px;
+form {
+    width: 100%;
 }
 
-.btn-secondary {
-    margin: 15px;
+.logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+    object-fit: cover;
 }
 
-hr {
-    padding: 15px;
+.container .font-weight-normal {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container .btn-primary {
+    width: 100%;
 }

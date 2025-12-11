@@ -9,15 +9,16 @@
 
 <form action="display-discount" method="post">
     <label>Product Description:</label><br>
-    <input type="text" name="productDescription" required><br><br>
+    <input type="text" name="productDescription"><br><br>
 
     <label>List Price: </label><br>
-    <input type="number" step="0.01" name="listPrice" required><br><br>
+    <input type="text" name="listPrice"><br><br>
 
     <label>Discount Percent: </label><br>
-    <input type="number" step="0.01" name="discountPercent" required><br><br>
+    <input type="text" name="discountPercent"><br><br>
 
     <button type="submit">Calculate Discount</button>
+    <p>${message}</p>
 </form>
 
 </body>

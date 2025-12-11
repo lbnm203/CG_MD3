@@ -13,12 +13,27 @@ public class DiscountServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String productDesciption = request.getParameter("productDescription");
-        double listPrice = Double.parseDouble(request.getParameter("listPrice"));
-        double discountPercent = Double.parseDouble(request.getParameter("discountPercent"));
+        String inputPrice = request.getParameter("listPrice");
+        String inputDiscount = request.getParameter("discountPercent");
 
-        if (listPrice < 0 || discountPercent < 0 || discountPercent > 100) {
-            throw new NumberFormatException("Giá trị không hợp lệ");
+        if (!Validate.inputString(productDesciption)) {
+            request.setAttribute("message", "Product description cannot be empty");
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
+
+        if (!Validate.inputPrice(inputPrice)) {
+            request.setAttribute("message", "Product Price is not valid");
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+        }
+
+        if (!Validate.inputDiscount(inputDiscount)) {
+            request.setAttribute("message", "Discount is not valid");
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+        }
+
+
+        double listPrice = Double.parseDouble(inputPrice);
+        double discountPercent = Double.parseDouble(inputDiscount);
 
         double discountAmount = listPrice * discountPercent * 0.01;
         double discountPrice = listPrice - discountAmount;
